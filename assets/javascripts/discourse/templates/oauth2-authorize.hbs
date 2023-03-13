@@ -1,0 +1,12 @@
+<h1>{{i18n "discourse-virtmail.oauth2.authorize.title"}}</h1>
+
+{{#if hasAddresses}}
+Bitte wähle eine E-Mail-Adresse:
+<ul>
+{{#each addresses as |addr|}}
+<li><a {{action "authorize" addr.address}}>{{addr.address}}</a>{{#if addr.comment}} ({{addr.comment}}){{/if}}</li>
+{{/each}}
+</ul>
+{{else}}
+Für dich sind keine E-Mail-Adressen konfiguriert.
+{{/if}}

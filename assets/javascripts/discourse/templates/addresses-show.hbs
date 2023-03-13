@@ -1,0 +1,23 @@
+<LinkTo @route="discourse-virtmail.addresses" class="go-back">
+  {{d-icon "arrow-left"}}
+  {{i18n "discourse-virtmail.addresses.go_back"}}
+</LinkTo>
+
+<div class="web-hook-container">
+  <div>Address: <TextField @value={{model.localpart}} /> @ <TextField @value={{model.domain}} /></div>
+  <div>Comment:<br><Textarea @value={{model.comment}} /></div>
+  <div><b>Destinations:</b><br>
+  <Input @type="checkbox" @checked={{model.forward_only}} /> {{i18n "discourse-virtmail.addresses.forward_only"}}<br>
+  <VirtmailList @values={{model.destinations}} /></div>
+  <div><b>Allowed Users:</b><br>
+  <UserChooser @value={{model.allowed_users}} /></div>
+
+  <div class="controls">
+    <DButton
+      @action={{this.save}}
+      @class="btn-default"
+      @disabled={{this.saveDisabled}}
+      @translatedLabel={{this.saveButtonText}} />
+    <span class="saving">{{this.savingStatus}}</span>
+  </div>
+</div>

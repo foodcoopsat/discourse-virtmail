@@ -1,0 +1,6 @@
+{{#if currentUser.admin}}
+  <div class="control-group">
+    <label class="control-label">{{i18n "discourse-virtmail.addresses.virtmail_domains"}}</label>
+    <VirtmailList @values={{group.virtmail_domains}} />
+  </div>
+{{/if}}

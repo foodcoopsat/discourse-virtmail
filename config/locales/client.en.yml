@@ -1,0 +1,17 @@
+en:
+  js:
+    discourse-virtmail:
+      addresses:
+        address: Address
+        comment: Comment
+        delete_confirm: Are you sure you want to delete this address?
+        forward_only: Forward only (disables login to mailbox)
+        go_back: Go back
+        new: New Address
+        password: Password
+        reset_password: Reset password
+        title: Virtual Mailbox Administration
+        virtmail_domains: Virtual Mail Domains
+      user_preferences_security:
+        title: E-Mail Password
+        reset_password: Reset password
