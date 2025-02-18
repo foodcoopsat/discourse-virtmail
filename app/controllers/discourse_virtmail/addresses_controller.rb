@@ -7,10 +7,8 @@ module DiscourseVirtmail
 
     def index
       rows = store_rows.order(:key)
-      respond_to do |format|
-        format.json { render json: { addresses: serialize_data(rows, AddressSerializer) } }
-        format.any { render plain: "Not Acceptable", status: :not_acceptable }
-      end
+      rows_ser = serialize_data(rows, AddressSerializer)
+      render json: { addresses: serialize_data(rows, AddressSerializer) }
     end
 
     def authorize
@@ -18,10 +16,7 @@ module DiscourseVirtmail
         .where(plugin_name: 'virtmail')
         .where("value::jsonb->'allowed_users' @> '?'", current_user.id)
         .order(:key)
-      respond_to do |format|
-        format.json { render json: { addresses: serialize_data(rows, AddressSerializer) } }
-        format.any { render plain: "Not Acceptable", status: :not_acceptable }
-      end
+      render json: { addresses: serialize_data(rows, AddressSerializer) }
     end
 
     def show

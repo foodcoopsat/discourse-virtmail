@@ -1,13 +1,11 @@
 import DiscourseRoute from 'discourse/routes/discourse'
 
-export default DiscourseRoute.extend({
-  controllerName: "addresses-index",
+export default class AddressIndex extends DiscourseRoute{
+  controllerName = "addresses-index";
 
-  model(params) {
-    return this.store.findAll("address");
-  },
-
-  renderTemplate() {
-    this.render("addresses-index");
+  async model(params) {
+    const addr = await this.store.findAll("address");
+    return addr;
   }
-});
+
+}
