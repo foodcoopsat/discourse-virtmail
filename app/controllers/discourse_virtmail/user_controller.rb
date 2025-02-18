@@ -10,7 +10,7 @@ module DiscourseVirtmail
       user.custom_fields['virtmail_password'] = "{SHA512-CRYPT}#{password.crypt("$6$#{SecureRandom.base64}")}"
       user.save_custom_fields
 
-      render_json_dump({ password: password })
+      render json: { password: password }
     end
   end
 end

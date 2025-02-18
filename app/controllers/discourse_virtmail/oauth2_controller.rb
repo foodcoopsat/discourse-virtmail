@@ -22,7 +22,7 @@ module DiscourseVirtmail
         .any?
 
       unless allowed
-        render_json_dump({ error: "Adresse nicht erlaubt" }, status: 403)
+        render json: { error: "Adresse nicht erlaubt" }, status: 403
         return
       end
 
@@ -31,14 +31,14 @@ module DiscourseVirtmail
 
       query = { code: code, state: search["state"] }
       location = "#{search["redirect_uri"]}?#{query.to_query}"
-      render_json_dump({ location: location })
+      render json: { location: location }
     end
 
     def token
       code = params["code"]
       data = Discourse.redis.get(redis_key_code(code))
       unless data
-        render_json_dump({ error: "invalid_grant" }, status: 403)
+        render json: { error: "invalid_grant" }, status: 403
         return
       end
 
@@ -46,7 +46,7 @@ module DiscourseVirtmail
 
       token = SecureRandom.base64(12).tr('/+', '_-')
       Discourse.redis.setex redis_key_token(token), 10.minutes, data
-      render_json_dump({ access_token: token, token_type: "Bearer" })
+      render json: { access_token: token, token_type: "Bearer" }
     end
 
     def base64url(data)
@@ -57,7 +57,7 @@ module DiscourseVirtmail
       type, value = request.headers["HTTP_AUTHORIZATION"]&.split(" ", 2)
 
       unless type == "Bearer"
-        render_json_dump({ error: "invalid_grant" }, status: 401)
+        render json: { error: "invalid_grant" }, status: 401
         return
       end
 
@@ -65,11 +65,11 @@ module DiscourseVirtmail
       key = redis_key_token(token)
       data = Discourse.redis.get(key)
       unless data
-        render_json_dump({ error: "invalid_grant" }, status: 403)
+        render json: { error: "invalid_grant" }, status: 403
         return
       end
 
-      render_json_dump(ActiveSupport::JSON.decode(data))
+      render json: ActiveSupport::JSON.decode(data)
     end
 
     def redis_key_token(token)

@@ -7,7 +7,7 @@ module DiscourseVirtmail
 
     def index
       rows = store_rows.order(:key)
-      render_json_dump({ addresses: serialize_data(rows, AddressSerializer) })
+      render json: { addresses: serialize_data(rows, AddressSerializer) }
     end
 
     def authorize
@@ -15,7 +15,7 @@ module DiscourseVirtmail
         .where(plugin_name: 'virtmail')
         .where("value::jsonb->'allowed_users' @> '?'", current_user.id)
         .order(:key)
-      render_json_dump({ addresses: serialize_data(rows, AuthorizeAddressSerializer) })
+      render json: { addresses: serialize_data(rows, AuthorizeAddressSerializer) }
     end
 
     def show
@@ -73,7 +73,7 @@ module DiscourseVirtmail
 
       row.update!(value: value.to_json)
 
-      render_json_dump({ password: password })
+      render json: { password: password }
     end
 
     def destroy
@@ -82,7 +82,7 @@ module DiscourseVirtmail
     end
 
     def domains
-      render_json_dump({ domains: current_user.allowed_virtmail_domains })
+      render json: { domains: current_user.allowed_virtmail_domains }
     end
 
     private
