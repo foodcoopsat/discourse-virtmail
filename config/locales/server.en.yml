@@ -1,3 +1,3 @@
 en:
   site_settings:
-    discourse_virtmail_enabled: "Enable DiscourseVirtmail plugin"
+    discourse_virtmail_enabled: "Enable discourse-virtmail plugin"

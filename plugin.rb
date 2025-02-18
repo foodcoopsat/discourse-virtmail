@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# name: DiscourseVirtmail
+# name: discourse-virtmail
 # about: Virtual E-Mail
 # version: 0.1
 # authors: paroga
@@ -8,7 +8,7 @@
 
 enabled_site_setting :discourse_virtmail_enabled
 
-PLUGIN_NAME ||= 'DiscourseVirtmail'
+PLUGIN_NAME ||= 'discourse-virtmail'
 
 load File.expand_path('lib/discourse-virtmail/engine.rb', __dir__)
 

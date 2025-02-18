@@ -1,6 +1,6 @@
 module DiscourseVirtmail
   class UserController < ::ApplicationController
-    requires_plugin DiscourseVirtmail
+    requires_plugin DiscourseVirtmail::PLUGIN_NAME
 
     def reset_password
       user = fetch_user_from_params

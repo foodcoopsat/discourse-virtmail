@@ -1,6 +1,6 @@
 module DiscourseVirtmail
   class Oauth2Controller < ::ApplicationController
-    requires_plugin DiscourseVirtmail
+    requires_plugin DiscourseVirtmail::PLUGIN_NAME
 
     # TODO implement better security checks
     skip_before_action :check_xhr, :preload_json, :redirect_to_login_if_required

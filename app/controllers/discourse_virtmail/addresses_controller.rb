@@ -1,6 +1,7 @@
 module DiscourseVirtmail
   class AddressesController < ::ApplicationController
-    requires_plugin DiscourseVirtmail
+    requires_plugin DiscourseVirtmail::PLUGIN_NAME
+
 
     before_action :ensure_logged_in
 
