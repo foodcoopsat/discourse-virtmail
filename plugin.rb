@@ -8,15 +8,14 @@
 
 enabled_site_setting :discourse_virtmail_enabled
 
-PLUGIN_NAME ||= 'discourse-virtmail'
+module ::DiscourseVirtmail
+  PLUGIN_NAME ||= 'discourse-virtmail'.freeze
+  GROUP_CUSTOM_FIELD_DOMAINS ||= 'virtmail_domains'.freeze
+end
 
 load File.expand_path('lib/discourse-virtmail/engine.rb', __dir__)
 
 after_initialize do
-  module ::DiscourseVirtmail
-    PLUGIN_NAME ||= 'discourse-virtmail'.freeze
-    GROUP_CUSTOM_FIELD_DOMAINS ||= 'virtmail_domains'.freeze
-  end
 
   register_editable_group_custom_field({ DiscourseVirtmail::GROUP_CUSTOM_FIELD_DOMAINS => [] })
 
