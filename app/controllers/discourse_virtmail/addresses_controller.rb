@@ -11,7 +11,6 @@ module DiscourseVirtmail
         format.json { render json: { addresses: serialize_data(rows, AddressSerializer) } }
         format.any { render plain: "Not Acceptable", status: :not_acceptable }
       end
-  end
     end
 
     def authorize
