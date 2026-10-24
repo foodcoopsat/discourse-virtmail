@@ -7,7 +7,7 @@ export default Controller.extend({
   addresses: [],
 
   init() {
-    this._super(arguments);
+    this._super(...arguments);
 
     ajax(`/discourse-virtmail/oauth2/authorize`, {
       type: "GET"

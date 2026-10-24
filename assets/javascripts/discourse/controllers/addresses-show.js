@@ -1,23 +1,12 @@
+import Controller from "@ember/controller";
 import { action } from "@ember/object";
-import Controller, { inject as controller } from "@ember/controller";
-import EmberObject from "@ember/object";
+import { service } from "@ember/service";
 import I18n from "I18n";
-import { alias } from "@ember/object/computed";
 import discourseComputed from "discourse-common/utils/decorators";
-import { extractDomainFromUrl } from "discourse/lib/utilities";
-import { isAbsoluteURL } from "discourse-common/lib/get-url";
-import { empty } from "@ember/object/computed";
-
-import { isEmpty } from "@ember/utils";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 
-
-// import Controller from "@ember/controller";
 export default Controller.extend({
-  // addresses: controller(),
-
-  addresses: {
-  },
+  router: service(),
 
   @discourseComputed("model.isSaving", "saved", "saveButtonDisabled")
   savingStatus(isSaving, saved, saveButtonDisabled) {
@@ -50,7 +39,7 @@ export default Controller.extend({
         this.set("saved", true);
 
         if (isNew) {
-          this.transitionToRoute("discourse-virtmail.addresses.show", model.get("id"));
+          this.router.transitionTo("discourse-virtmail.addresses.show", model.get("id"));
         }
       })
       .catch(popupAjaxError);

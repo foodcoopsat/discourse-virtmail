@@ -8,7 +8,7 @@ export default class VirtmailList extends Component {
   values = null;
 
   didReceiveAttrs() {
-    this._super(...arguments);
+    super.didReceiveAttrs(...arguments);
 
     this.set("collection", this.values || []);
   }

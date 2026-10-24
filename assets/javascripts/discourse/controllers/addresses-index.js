@@ -1,6 +1,6 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import { tracked } from "@glimmer/tracking"; // Import the tracked decorator
 import I18n from "I18n";
 import { popupAjaxError } from "discourse/lib/ajax-error";
